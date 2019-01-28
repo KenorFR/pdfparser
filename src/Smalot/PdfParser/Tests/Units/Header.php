@@ -7,7 +7,7 @@
  * @author  Sébastien MALOT <sebastien@malot.fr>
  * @date    2017-01-03
  * @license LGPLv3
- * @url     <https://github.com/smalot/pdfparser>
+ * @url     <https://github.com/Noxxie/pdfparser>
  *
  *  PdfParser is a pdf library written in PHP, extraction oriented.
  *  Copyright (C) 2017 - Sébastien MALOT <sebastien@malot.fr>
@@ -28,26 +28,26 @@
  *
  */
 
-namespace Smalot\PdfParser\Tests\Units;
+namespace Noxxie\PdfParser\Tests\Units;
 
 use mageekguy\atoum;
 
 /**
  * Class Header
  *
- * @package Smalot\PdfParser\Tests\Units
+ * @package Noxxie\PdfParser\Tests\Units
  */
 class Header extends atoum\test
 {
     public function testParse()
     {
-        $document = new \Smalot\PdfParser\Document();
+        $document = new \Noxxie\PdfParser\Document();
 
         $content  = '<</Type/Page/SubType/Text>>foo';
         $position = 0;
-        $header   = \Smalot\PdfParser\Header::parse($content, $document, $position);
+        $header   = \Noxxie\PdfParser\Header::parse($content, $document, $position);
 
-        $this->assert->object($header)->isInstanceOf('\Smalot\PdfParser\Header');
+        $this->assert->object($header)->isInstanceOf('\Noxxie\PdfParser\Header');
         $this->assert->integer($position)->isEqualTo(27);
         $this->assert->array($header->getElements())->hasSize(2);
 
@@ -55,48 +55,48 @@ class Header extends atoum\test
         $this->assert->castToString($header->get('Type'))->isEqualTo('Page');
         $content  = 'foo';
         $position = 0;
-        $header   = \Smalot\PdfParser\Header::parse($content, $document, $position);
+        $header   = \Noxxie\PdfParser\Header::parse($content, $document, $position);
 
-        $this->assert->object($header)->isInstanceOf('\Smalot\PdfParser\Header');
+        $this->assert->object($header)->isInstanceOf('\Noxxie\PdfParser\Header');
         $this->assert->integer($position)->isEqualTo(0);
         $this->assert->array($header->getElements())->hasSize(0);
 
         $position = 0;
         $content  = "<</CreationDate(D:20100309184803+01'00')/Author(Utilisateur)/Creator(PScript5.dll Version 5.2.2)/Producer(Acrobat Distiller 7.0.5 \(Windows\))/ModDate(D:20100310104810+01'00')/Title(Microsoft Word - CLEMI.docx)>>";
-        $header   = \Smalot\PdfParser\Header::parse($content, $document, $position);
+        $header   = \Noxxie\PdfParser\Header::parse($content, $document, $position);
         $this->assert->integer($position)->isEqualTo(212);
 
         $position = 0;
         $content  = '[5 0 R ] foo';
-        $header   = \Smalot\PdfParser\Header::parse($content, $document, $position);
+        $header   = \Noxxie\PdfParser\Header::parse($content, $document, $position);
         $this->assert->integer($position)->isEqualTo(8);
         $this->assert->array($header->getElements())->hasSize(1);
     }
 
     public function testGetElements()
     {
-        $document = new \Smalot\PdfParser\Document();
+        $document = new \Noxxie\PdfParser\Document();
 
         $content  = '<</Type/Page/Subtype/Text>>foo';
         $position = 0;
-        $header   = \Smalot\PdfParser\Header::parse($content, $document, $position);
+        $header   = \Noxxie\PdfParser\Header::parse($content, $document, $position);
 
         $this->assert->array($elements = $header->getElements())->hasSize(2);
-        $this->assert->object(current($elements))->isInstanceOf('\Smalot\PdfParser\Element\ElementName');
+        $this->assert->object(current($elements))->isInstanceOf('\Noxxie\PdfParser\Element\ElementName');
 
         $types = $header->getElementTypes();
         $this->assert->array($types);
-        $this->assert->string($types['Type'])->isEqualTo('Smalot\PdfParser\Element\ElementName');
-        $this->assert->string($types['Subtype'])->isEqualTo('Smalot\PdfParser\Element\ElementName');
+        $this->assert->string($types['Type'])->isEqualTo('Noxxie\PdfParser\Element\ElementName');
+        $this->assert->string($types['Subtype'])->isEqualTo('Noxxie\PdfParser\Element\ElementName');
     }
 
     public function testHas()
     {
-        $document = new \Smalot\PdfParser\Document();
+        $document = new \Noxxie\PdfParser\Document();
 
         $content  = '<</Type/Page/SubType/Text/Font 5 0 R>>foo';
         $position = 0;
-        $header   = \Smalot\PdfParser\Header::parse($content, $document, $position);
+        $header   = \Noxxie\PdfParser\Header::parse($content, $document, $position);
 
         $this->assert->boolean($header->has('Type'))->isEqualTo(true);
         $this->assert->boolean($header->has('SubType'))->isEqualTo(true);
@@ -106,33 +106,33 @@ class Header extends atoum\test
 
     public function testGet()
     {
-        $document = new \Smalot\PdfParser\Document();
+        $document = new \Noxxie\PdfParser\Document();
 
         $content  = '<</Type/Page/SubType/Text/Font 5 0 R/Resources 8 0 R>>foo';
         $position = 0;
-        $header   = \Smalot\PdfParser\Header::parse($content, $document, $position);
-        $object   = new \Smalot\PdfParser\Page($document, $header);
+        $header   = \Noxxie\PdfParser\Header::parse($content, $document, $position);
+        $object   = new \Noxxie\PdfParser\Page($document, $header);
         $document->setObjects(array('5_0' => $object));
 
-        $this->assert->object($header->get('Type'))->isInstanceOf('\Smalot\PdfParser\Element\ElementName');
-        $this->assert->object($header->get('SubType'))->isInstanceOf('\Smalot\PdfParser\Element\ElementName');
-        $this->assert->object($header->get('Font'))->isInstanceOf('\Smalot\PdfParser\Page');
-        $this->assert->object($header->get('Image'))->isInstanceOf('\Smalot\PdfParser\Element\ElementMissing');
-        $this->assert->object($header->get('Resources'))->isInstanceOf('\Smalot\PdfParser\Element\ElementMissing');
+        $this->assert->object($header->get('Type'))->isInstanceOf('\Noxxie\PdfParser\Element\ElementName');
+        $this->assert->object($header->get('SubType'))->isInstanceOf('\Noxxie\PdfParser\Element\ElementName');
+        $this->assert->object($header->get('Font'))->isInstanceOf('\Noxxie\PdfParser\Page');
+        $this->assert->object($header->get('Image'))->isInstanceOf('\Noxxie\PdfParser\Element\ElementMissing');
+        $this->assert->object($header->get('Resources'))->isInstanceOf('\Noxxie\PdfParser\Element\ElementMissing');
     }
 
     public function testResolveXRef()
     {
-        $document = new \Smalot\PdfParser\Document();
+        $document = new \Noxxie\PdfParser\Document();
         $content  = '<</Type/Page/SubType/Text/Font 5 0 R/Resources 8 0 R>>foo';
         $position = 0;
-        $header   = \Smalot\PdfParser\Header::parse($content, $document, $position);
-        $object   = new \Smalot\PdfParser\Page($document, $header);
+        $header   = \Noxxie\PdfParser\Header::parse($content, $document, $position);
+        $object   = new \Noxxie\PdfParser\Page($document, $header);
         $document->setObjects(array('5_0' => $object));
 
-        $this->assert->object($header->get('Font'))->isInstanceOf('\Smalot\PdfParser\PDFObject');
+        $this->assert->object($header->get('Font'))->isInstanceOf('\Noxxie\PdfParser\PDFObject');
 
         $header = $header->get('Resources');
-        $this->assert->object($header)->isInstanceOf('\Smalot\PdfParser\Element\ElementMissing');
+        $this->assert->object($header)->isInstanceOf('\Noxxie\PdfParser\Element\ElementMissing');
     }
 }

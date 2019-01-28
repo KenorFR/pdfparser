@@ -7,7 +7,7 @@
  * @author  Sébastien MALOT <sebastien@malot.fr>
  * @date    2017-01-03
  * @license LGPLv3
- * @url     <https://github.com/smalot/pdfparser>
+ * @url     <https://github.com/Noxxie/pdfparser>
  *
  *  PdfParser is a pdf library written in PHP, extraction oriented.
  *  Copyright (C) 2017 - Sébastien MALOT <sebastien@malot.fr>
@@ -30,12 +30,12 @@
 
 // Source : http://www.opensource.apple.com/source/vim/vim-34/vim/runtime/print/mac-roman.ps
 
-namespace Smalot\PdfParser\Encoding;
+namespace Noxxie\PdfParser\Encoding;
 
 /**
  * Class MacRomanEncoding
  *
- * @package Smalot\PdfParser\Encoding
+ * @package Noxxie\PdfParser\Encoding
  */
 class MacRomanEncoding
 {

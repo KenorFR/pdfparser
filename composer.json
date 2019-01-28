@@ -1,5 +1,5 @@
 {
-    "name": "smalot/pdfparser",
+    "name": "noxxie/pdfparser",
     "description": "Pdf parser library. Can read and extract information from pdf file.",
     "keywords": ["PDF", "text", "parser", "parse", "extract"],
     "type": "library",
@@ -8,10 +8,14 @@
         {
             "name": "Sebastien MALOT",
             "email": "sebastien@malot.fr"
+        },
+        {
+            "name": "Patrick",
+            "email": "patrick@noxxie.nl"
         }
     ],
     "support": {
-        "issues": "https://github.com/smalot/pdfparser/issues"
+        "issues": "https://github.com/noxxie/pdfparser/issues"
     },
     "homepage": "http://www.pdfparser.org",
     "require": {
@@ -25,7 +29,7 @@
     },
     "autoload": {
         "psr-0": {
-            "Smalot\\PdfParser\\": "src/"
+            "Noxxie\\PdfParser\\": "src/"
         }
     },
     "config": {

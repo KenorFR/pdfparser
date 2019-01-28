@@ -7,7 +7,7 @@
  * @author  Sébastien MALOT <sebastien@malot.fr>
  * @date    2017-01-03
  * @license LGPLv3
- * @url     <https://github.com/smalot/pdfparser>
+ * @url     <https://github.com/Noxxie/pdfparser>
  *
  *  PdfParser is a pdf library written in PHP, extraction oriented.
  *  Copyright (C) 2017 - Sébastien MALOT <sebastien@malot.fr>
@@ -28,14 +28,14 @@
  *
  */
 
-namespace Smalot\PdfParser\Tests\Units;
+namespace Noxxie\PdfParser\Tests\Units;
 
 use mageekguy\atoum;
 
 /**
  * Class PDFObject
  *
- * @package Smalot\PdfParser\Tests\Units
+ * @package Noxxie\PdfParser\Tests\Units
  */
 class PDFObject extends atoum\test
 {
@@ -65,8 +65,8 @@ class PDFObject extends atoum\test
 //BI
 //";
 //
-//        $document  = new \Smalot\PdfParser\Document();
-//        $object    = new \Smalot\PdfParser\PDFObject($document);
+//        $document  = new \Noxxie\PdfParser\Document();
+//        $object    = new \Noxxie\PdfParser\PDFObject($document);
 //        $offset    = 0;
 //        $parts     = $object->getCommandsImage($content, $offset);
 //        $reference = array(
@@ -139,8 +139,8 @@ ET Q
 q -124.774 124.127 5.64213 5.67154 930.307 4436.95 cm
 BI";
 
-        $document  = new \Smalot\PdfParser\Document();
-        $object    = new \Smalot\PdfParser\PDFObject($document);
+        $document  = new \Noxxie\PdfParser\Document();
+        $object    = new \Noxxie\PdfParser\PDFObject($document);
         $offset    = 0;
         $parts     = $object->getCommandsText($content, $offset);
         $reference = array(
@@ -271,8 +271,8 @@ ______________________
 q
 0.03 841';
 
-        $document = new \Smalot\PdfParser\Document();
-        $object   = new \Smalot\PdfParser\PDFObject($document);
+        $document = new \Noxxie\PdfParser\Document();
+        $object   = new \Noxxie\PdfParser\PDFObject($document);
         $cleaned  = $object->cleanContent($content, '_');
 
         $this->assert->string($cleaned)->length->isEqualTo(strlen($content));
@@ -300,8 +300,8 @@ ET
 q
 0.03 841';
 
-        $document = new \Smalot\PdfParser\Document();
-        $object   = new \Smalot\PdfParser\PDFObject($document);
+        $document = new \Noxxie\PdfParser\Document();
+        $object   = new \Noxxie\PdfParser\PDFObject($document);
         $sections = $object->getSectionsText($content);
 
 //        $this->assert->string($cleaned)->length->isEqualTo(strlen($content));

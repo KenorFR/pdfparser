@@ -7,7 +7,7 @@
  * @author  Sébastien MALOT <sebastien@malot.fr>
  * @date    2017-01-03
  * @license LGPLv3
- * @url     <https://github.com/smalot/pdfparser>
+ * @url     <https://github.com/Noxxie/pdfparser>
  *
  *  PdfParser is a pdf library written in PHP, extraction oriented.
  *  Copyright (C) 2017 - Sébastien MALOT <sebastien@malot.fr>
@@ -28,15 +28,15 @@
  *
  */
 
-namespace Smalot\PdfParser;
+namespace Noxxie\PdfParser;
 
-use Smalot\PdfParser\XObject\Form;
-use Smalot\PdfParser\XObject\Image;
+use Noxxie\PdfParser\XObject\Form;
+use Noxxie\PdfParser\XObject\Image;
 
 /**
  * Class PDFObject
  *
- * @package Smalot\PdfParser
+ * @package Noxxie\PdfParser
  */
 class PDFObject
 {
@@ -927,7 +927,7 @@ class PDFObject
 
             case 'Font':
                 $subtype   = $header->get('Subtype')->getContent();
-                $classname = '\Smalot\PdfParser\Font\Font' . $subtype;
+                $classname = '\Noxxie\PdfParser\Font\Font' . $subtype;
 
                 if (class_exists($classname)) {
                     return new $classname($document, $header, $content);

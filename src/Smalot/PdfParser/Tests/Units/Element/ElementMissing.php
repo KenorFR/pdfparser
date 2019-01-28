@@ -7,7 +7,7 @@
  * @author  Sébastien MALOT <sebastien@malot.fr>
  * @date    2017-01-03
  * @license LGPLv3
- * @url     <https://github.com/smalot/pdfparser>
+ * @url     <https://github.com/Noxxie/pdfparser>
  *
  *  PdfParser is a pdf library written in PHP, extraction oriented.
  *  Copyright (C) 2017 - Sébastien MALOT <sebastien@malot.fr>
@@ -28,20 +28,20 @@
  *
  */
 
-namespace Smalot\PdfParser\Tests\Units\Element;
+namespace Noxxie\PdfParser\Tests\Units\Element;
 
 use mageekguy\atoum;
 
 /**
  * Class ElementMissing
  *
- * @package Smalot\PdfParser\Tests\Units\Element
+ * @package Noxxie\PdfParser\Tests\Units\Element
  */
 class ElementMissing extends atoum\test
 {
     public function testEquals()
     {
-        $element = new \Smalot\PdfParser\Element\ElementMissing(null);
+        $element = new \Noxxie\PdfParser\Element\ElementMissing(null);
         $this->assert->boolean($element->equals(null))->isEqualTo(false);
         $this->assert->boolean($element->equals(true))->isEqualTo(false);
         $this->assert->boolean($element->equals('A'))->isEqualTo(false);
@@ -50,13 +50,13 @@ class ElementMissing extends atoum\test
 
     public function testGetContent()
     {
-        $element = new \Smalot\PdfParser\Element\ElementMissing(null);
+        $element = new \Noxxie\PdfParser\Element\ElementMissing(null);
         $this->assert->boolean($element->getContent())->isEqualTo(false);
     }
 
     public function testContains()
     {
-        $element = new \Smalot\PdfParser\Element\ElementMissing(null);
+        $element = new \Noxxie\PdfParser\Element\ElementMissing(null);
         $this->assert->boolean($element->contains(null))->isEqualTo(false);
         $this->assert->boolean($element->contains(true))->isEqualTo(false);
         $this->assert->boolean($element->contains('A'))->isEqualTo(false);
@@ -65,7 +65,7 @@ class ElementMissing extends atoum\test
 
     public function test__toString()
     {
-        $element = new \Smalot\PdfParser\Element\ElementMissing(null);
+        $element = new \Noxxie\PdfParser\Element\ElementMissing(null);
         $this->assert->castToString($element)->isEqualTo('');
     }
 }

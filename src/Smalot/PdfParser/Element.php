@@ -7,7 +7,7 @@
  * @author  Sébastien MALOT <sebastien@malot.fr>
  * @date    2017-01-03
  * @license LGPLv3
- * @url     <https://github.com/smalot/pdfparser>
+ * @url     <https://github.com/Noxxie/pdfparser>
  *
  *  PdfParser is a pdf library written in PHP, extraction oriented.
  *  Copyright (C) 2017 - Sébastien MALOT <sebastien@malot.fr>
@@ -28,23 +28,23 @@
  *
  */
 
-namespace Smalot\PdfParser;
+namespace Noxxie\PdfParser;
 
-use Smalot\PdfParser\Element\ElementArray;
-use Smalot\PdfParser\Element\ElementBoolean;
-use Smalot\PdfParser\Element\ElementDate;
-use Smalot\PdfParser\Element\ElementHexa;
-use Smalot\PdfParser\Element\ElementName;
-use Smalot\PdfParser\Element\ElementNull;
-use Smalot\PdfParser\Element\ElementNumeric;
-use Smalot\PdfParser\Element\ElementString;
-use Smalot\PdfParser\Element\ElementStruct;
-use Smalot\PdfParser\Element\ElementXRef;
+use Noxxie\PdfParser\Element\ElementArray;
+use Noxxie\PdfParser\Element\ElementBoolean;
+use Noxxie\PdfParser\Element\ElementDate;
+use Noxxie\PdfParser\Element\ElementHexa;
+use Noxxie\PdfParser\Element\ElementName;
+use Noxxie\PdfParser\Element\ElementNull;
+use Noxxie\PdfParser\Element\ElementNumeric;
+use Noxxie\PdfParser\Element\ElementString;
+use Noxxie\PdfParser\Element\ElementStruct;
+use Noxxie\PdfParser\Element\ElementXRef;
 
 /**
  * Class Element
  *
- * @package Smalot\PdfParser
+ * @package Noxxie\PdfParser
  */
 class Element
 {

@@ -7,7 +7,7 @@
  * @author  Sébastien MALOT <sebastien@malot.fr>
  * @date    2017-01-03
  * @license LGPLv3
- * @url     <https://github.com/smalot/pdfparser>
+ * @url     <https://github.com/Noxxie/pdfparser>
  *
  *  PdfParser is a pdf library written in PHP, extraction oriented.
  *  Copyright (C) 2017 - Sébastien MALOT <sebastien@malot.fr>
@@ -28,14 +28,14 @@
  *
  */
 
-namespace Smalot\PdfParser\Tests\Units\Element;
+namespace Noxxie\PdfParser\Tests\Units\Element;
 
 use mageekguy\atoum;
 
 /**
  * Class ElementNull
  *
- * @package Smalot\PdfParser\Tests\Units\Element
+ * @package Noxxie\PdfParser\Tests\Units\Element
  */
 class ElementNull extends atoum\test
 {
@@ -43,62 +43,62 @@ class ElementNull extends atoum\test
     {
         // Skipped.
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementNull::parse('ABC', null, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementNull::parse('ABC', null, $offset);
         $this->assert->boolean($element)->isEqualTo(false);
         $this->assert->integer($offset)->isEqualTo(0);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementNull::parse(' [ null ]', null, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementNull::parse(' [ null ]', null, $offset);
         $this->assert->boolean($element)->isEqualTo(false);
         $this->assert->integer($offset)->isEqualTo(0);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementNull::parse(' << null >>', null, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementNull::parse(' << null >>', null, $offset);
         $this->assert->boolean($element)->isEqualTo(false);
         $this->assert->integer($offset)->isEqualTo(0);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementNull::parse(' / null ', null, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementNull::parse(' / null ', null, $offset);
         $this->assert->boolean($element)->isEqualTo(false);
         $this->assert->integer($offset)->isEqualTo(0);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementNull::parse(' 0 null ', null, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementNull::parse(' 0 null ', null, $offset);
         $this->assert->boolean($element)->isEqualTo(false);
         $this->assert->integer($offset)->isEqualTo(0);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementNull::parse(" 0 \n null ", null, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementNull::parse(" 0 \n null ", null, $offset);
         $this->assert->boolean($element)->isEqualTo(false);
         $this->assert->integer($offset)->isEqualTo(0);
 
         // Valid.
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementNull::parse(' null ', null, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementNull::parse(' null ', null, $offset);
         $this->assert->boolean(is_null($element->getContent()))->isEqualTo(true);
         $this->assert->integer($offset)->isEqualTo(5);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementNull::parse(' null ', null, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementNull::parse(' null ', null, $offset);
         $this->assert->boolean(is_null($element->getContent()))->isEqualTo(true);
         $this->assert->integer($offset)->isEqualTo(5);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementNull::parse(' null', null, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementNull::parse(' null', null, $offset);
         $this->assert->boolean(is_null($element->getContent()))->isEqualTo(true);
         $this->assert->integer($offset)->isEqualTo(5);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementNull::parse('null', null, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementNull::parse('null', null, $offset);
         $this->assert->boolean(is_null($element->getContent()))->isEqualTo(true);
         $this->assert->integer($offset)->isEqualTo(4);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementNull::parse(" \n null ", null, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementNull::parse(" \n null ", null, $offset);
         $this->assert->boolean(is_null($element->getContent()))->isEqualTo(true);
         $this->assert->integer($offset)->isEqualTo(7);
     }
 
     public function testGetContent()
     {
-        $element = new \Smalot\PdfParser\Element\ElementNull('null');
+        $element = new \Noxxie\PdfParser\Element\ElementNull('null');
         $this->assert->boolean(is_null($element->getContent()))->isEqualTo(true);
     }
 
     public function testEquals()
     {
-        $element = new \Smalot\PdfParser\Element\ElementNull('null');
+        $element = new \Noxxie\PdfParser\Element\ElementNull('null');
         $this->assert->boolean($element->equals(null))->isEqualTo(true);
         $this->assert->boolean($element->equals(false))->isEqualTo(false);
         $this->assert->boolean($element->equals(0))->isEqualTo(false);
@@ -107,7 +107,7 @@ class ElementNull extends atoum\test
 
     public function testContains()
     {
-        $element = new \Smalot\PdfParser\Element\ElementNull('null');
+        $element = new \Noxxie\PdfParser\Element\ElementNull('null');
         $this->assert->boolean($element->contains(null))->isEqualTo(true);
         $this->assert->boolean($element->contains(false))->isEqualTo(false);
         $this->assert->boolean($element->contains(0))->isEqualTo(false);
@@ -115,7 +115,7 @@ class ElementNull extends atoum\test
 
     public function test__toString()
     {
-        $element = new \Smalot\PdfParser\Element\ElementNull('null');
+        $element = new \Noxxie\PdfParser\Element\ElementNull('null');
         $this->assert->castToString($element)->isEqualTo('null');
     }
 }

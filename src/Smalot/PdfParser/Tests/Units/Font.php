@@ -7,7 +7,7 @@
  * @author  Sébastien MALOT <sebastien@malot.fr>
  * @date    2017-01-03
  * @license LGPLv3
- * @url     <https://github.com/smalot/pdfparser>
+ * @url     <https://github.com/Noxxie/pdfparser>
  *
  *  PdfParser is a pdf library written in PHP, extraction oriented.
  *  Copyright (C) 2017 - Sébastien MALOT <sebastien@malot.fr>
@@ -28,22 +28,22 @@
  *
  */
 
-namespace Smalot\PdfParser\Tests\Units;
+namespace Noxxie\PdfParser\Tests\Units;
 
 use mageekguy\atoum;
-use Smalot\PdfParser\Header;
+use Noxxie\PdfParser\Header;
 
 /**
  * Class Font
  *
- * @package Smalot\PdfParser\Tests\Units
+ * @package Noxxie\PdfParser\Tests\Units
  */
 class Font extends atoum\test
 {
     public function testGetName()
     {
         $filename = __DIR__ . '/../../../../../samples/Document1_pdfcreator_nocompressed.pdf';
-        $parser   = new \Smalot\PdfParser\Parser();
+        $parser   = new \Noxxie\PdfParser\Parser();
         $document = $parser->parseFile($filename);
         $fonts    = $document->getFonts();
         $font     = reset($fonts);
@@ -54,7 +54,7 @@ class Font extends atoum\test
     public function testGetType()
     {
         $filename = __DIR__ . '/../../../../../samples/Document1_pdfcreator_nocompressed.pdf';
-        $parser   = new \Smalot\PdfParser\Parser();
+        $parser   = new \Noxxie\PdfParser\Parser();
         $document = $parser->parseFile($filename);
         $fonts    = $document->getFonts();
         $font     = reset($fonts);
@@ -65,7 +65,7 @@ class Font extends atoum\test
     public function testGetDetails()
     {
         $filename  = __DIR__ . '/../../../../../samples/Document1_pdfcreator_nocompressed.pdf';
-        $parser    = new \Smalot\PdfParser\Parser();
+        $parser    = new \Noxxie\PdfParser\Parser();
         $document  = $parser->parseFile($filename);
         $fonts     = $document->getFonts();
         $font      = reset($fonts);
@@ -115,26 +115,26 @@ class Font extends atoum\test
     public function testTranslateChar()
     {
         $filename = __DIR__ . '/../../../../../samples/Document1_pdfcreator_nocompressed.pdf';
-        $parser   = new \Smalot\PdfParser\Parser();
+        $parser   = new \Noxxie\PdfParser\Parser();
         $document = $parser->parseFile($filename);
         $fonts    = $document->getFonts();
-        /** @var \Smalot\PdfParser\Font $font */
+        /** @var \Noxxie\PdfParser\Font $font */
         $font = reset($fonts);
 
         $this->assert->string($font->translateChar("\x01"))->isEqualTo('D');
         $this->assert->string($font->translateChar("\x02"))->isEqualTo('o');
         $this->assert->string($font->translateChar("\x03"))->isEqualTo('c');
         $this->assert->string($font->translateChar("\x04"))->isEqualTo('u');
-        $this->assert->string($font->translateChar("\x99"))->isEqualTo(\Smalot\PdfParser\Font::MISSING);
+        $this->assert->string($font->translateChar("\x99"))->isEqualTo(\Noxxie\PdfParser\Font::MISSING);
     }
 
     public function testLoadTranslateTable()
     {
-        $document = new \Smalot\PdfParser\Document();
+        $document = new \Noxxie\PdfParser\Document();
 
         $content = '<</Type/Font /Subtype /Type0 /ToUnicode 2 0 R>>';
         $header  = Header::parse($content, $document);
-        $font    = new \Smalot\PdfParser\Font($document, $header);
+        $font    = new \Noxxie\PdfParser\Font($document, $header);
 
         $content = '/CIDInit /ProcSet findresource begin
 14 dict begin
@@ -186,7 +186,7 @@ endcmap
 CMapName currentdict /CMap defineresource pop
 end
 end';
-        $unicode = new \Smalot\PdfParser\PDFObject($document, null, $content);
+        $unicode = new \Noxxie\PdfParser\PDFObject($document, null, $content);
 
         $document->setObjects(array('1_0' => $font, '2_0' => $unicode));
 
@@ -211,29 +211,29 @@ end';
     public function testDecodeHexadecimal()
     {
         $hexa = '<322041>';
-        $this->assert->string(\Smalot\PdfParser\Font::decodeHexadecimal($hexa))->isEqualTo("2 A");
-        $this->assert->string(\Smalot\PdfParser\Font::decodeHexadecimal($hexa, false))->isEqualTo("2 A");
-        $this->assert->string(\Smalot\PdfParser\Font::decodeHexadecimal($hexa, true))->isEqualTo("(2 A)");
+        $this->assert->string(\Noxxie\PdfParser\Font::decodeHexadecimal($hexa))->isEqualTo("2 A");
+        $this->assert->string(\Noxxie\PdfParser\Font::decodeHexadecimal($hexa, false))->isEqualTo("2 A");
+        $this->assert->string(\Noxxie\PdfParser\Font::decodeHexadecimal($hexa, true))->isEqualTo("(2 A)");
 
         $hexa = '<003200200041>';
-        $this->assert->string(\Smalot\PdfParser\Font::decodeHexadecimal($hexa))->isEqualTo("\x002\x00 \x00A");
-        $this->assert->string(\Smalot\PdfParser\Font::decodeHexadecimal($hexa, false))->isEqualTo("\x002\x00 \x00A");
-        $this->assert->string(\Smalot\PdfParser\Font::decodeHexadecimal($hexa, true))->isEqualTo("(\x002\x00 \x00A)");
+        $this->assert->string(\Noxxie\PdfParser\Font::decodeHexadecimal($hexa))->isEqualTo("\x002\x00 \x00A");
+        $this->assert->string(\Noxxie\PdfParser\Font::decodeHexadecimal($hexa, false))->isEqualTo("\x002\x00 \x00A");
+        $this->assert->string(\Noxxie\PdfParser\Font::decodeHexadecimal($hexa, true))->isEqualTo("(\x002\x00 \x00A)");
 
         $hexa = '<00320020> 8 <0041>';
-        $this->assert->string(\Smalot\PdfParser\Font::decodeHexadecimal($hexa))->isEqualTo("\x002\x00  8 \x00A");
-        $this->assert->string(\Smalot\PdfParser\Font::decodeHexadecimal($hexa, false))->isEqualTo("\x002\x00  8 \x00A");
-        $this->assert->string(\Smalot\PdfParser\Font::decodeHexadecimal($hexa, true))->isEqualTo(
+        $this->assert->string(\Noxxie\PdfParser\Font::decodeHexadecimal($hexa))->isEqualTo("\x002\x00  8 \x00A");
+        $this->assert->string(\Noxxie\PdfParser\Font::decodeHexadecimal($hexa, false))->isEqualTo("\x002\x00  8 \x00A");
+        $this->assert->string(\Noxxie\PdfParser\Font::decodeHexadecimal($hexa, true))->isEqualTo(
             "(\x002\x00 ) 8 (\x00A)"
         );
 
         $hexa = '<3220> 8 <41>';
-        $this->assert->string(\Smalot\PdfParser\Font::decodeHexadecimal($hexa))->isEqualTo("2  8 A");
-        $this->assert->string(\Smalot\PdfParser\Font::decodeHexadecimal($hexa, false))->isEqualTo("2  8 A");
-        $this->assert->string(\Smalot\PdfParser\Font::decodeHexadecimal($hexa, true))->isEqualTo("(2 ) 8 (A)");
+        $this->assert->string(\Noxxie\PdfParser\Font::decodeHexadecimal($hexa))->isEqualTo("2  8 A");
+        $this->assert->string(\Noxxie\PdfParser\Font::decodeHexadecimal($hexa, false))->isEqualTo("2  8 A");
+        $this->assert->string(\Noxxie\PdfParser\Font::decodeHexadecimal($hexa, true))->isEqualTo("(2 ) 8 (A)");
 
         $hexa = '<00320020005C>-10<0041>';
-        $this->assert->string(\Smalot\PdfParser\Font::decodeHexadecimal($hexa))->isEqualTo("\x002\x00 \x00\\-10\x00A");
+        $this->assert->string(\Noxxie\PdfParser\Font::decodeHexadecimal($hexa))->isEqualTo("\x002\x00 \x00\\-10\x00A");
         $this->assert->string(\Smalot\PdfParser\Font::decodeHexadecimal($hexa, false))->isEqualTo(
             "\x002\x00 \x00\\-10\x00A"
         );

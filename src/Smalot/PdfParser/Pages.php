@@ -7,7 +7,7 @@
  * @author  Sébastien MALOT <sebastien@malot.fr>
  * @date    2017-01-03
  * @license LGPLv3
- * @url     <https://github.com/smalot/pdfparser>
+ * @url     <https://github.com/Noxxie/pdfparser>
  *
  *  PdfParser is a pdf library written in PHP, extraction oriented.
  *  Copyright (C) 2017 - Sébastien MALOT <sebastien@malot.fr>
@@ -28,12 +28,12 @@
  *
  */
 
-namespace Smalot\PdfParser;
+namespace Noxxie\PdfParser;
 
 /**
  * Class Pages
  *
- * @package Smalot\PdfParser
+ * @package Noxxie\PdfParser
  */
 class Pages extends PDFObject
 {

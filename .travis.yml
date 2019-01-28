@@ -20,4 +20,4 @@ before_script:
   - composer update
   - composer --prefer-source --dev install
 
-script: ./vendor/bin/atoum -d src/Smalot/PdfParser/Tests/ -ncc
+script: ./vendor/bin/atoum -d src/Noxxie/PdfParser/Tests/ -ncc

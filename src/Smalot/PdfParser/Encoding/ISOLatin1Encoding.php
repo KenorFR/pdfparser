@@ -7,7 +7,7 @@
  * @author  Sébastien MALOT <sebastien@malot.fr>
  * @date    2017-01-03
  * @license LGPLv3
- * @url     <https://github.com/smalot/pdfparser>
+ * @url     <https://github.com/Noxxie/pdfparser>
  *
  *  PdfParser is a pdf library written in PHP, extraction oriented.
  *  Copyright (C) 2017 - Sébastien MALOT <sebastien@malot.fr>
@@ -30,12 +30,12 @@
 
 // Source : http://cpansearch.perl.org/src/JV/PostScript-Font-1.10.02/lib/PostScript/ISOLatin1Encoding.pm
 
-namespace Smalot\PdfParser\Encoding;
+namespace Noxxie\PdfParser\Encoding;
 
 /**
  * Class ISOLatin1Encoding
  *
- * @package Smalot\PdfParser\Encoding
+ * @package Noxxie\PdfParser\Encoding
  */
 class ISOLatin1Encoding
 {

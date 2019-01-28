@@ -7,7 +7,7 @@
  * @author  Sébastien MALOT <sebastien@malot.fr>
  * @date    2017-01-03
  * @license LGPLv3
- * @url     <https://github.com/smalot/pdfparser>
+ * @url     <https://github.com/Noxxie/pdfparser>
  *
  *  PdfParser is a pdf library written in PHP, extraction oriented.
  *  Copyright (C) 2017 - Sébastien MALOT <sebastien@malot.fr>
@@ -28,28 +28,28 @@
  *
  */
 
-namespace Smalot\PdfParser\Tests\Units\Element;
+namespace Noxxie\PdfParser\Tests\Units\Element;
 
 use mageekguy\atoum;
 
 /**
  * Class ElementStruct
  *
- * @package Smalot\PdfParser\Tests\Units\Element
+ * @package Noxxie\PdfParser\Tests\Units\Element
  */
 class ElementStruct extends atoum\test
 {
     public function testParse()
     {
-        $document = new \Smalot\PdfParser\Document(array());
+        $document = new \Noxxie\PdfParser\Document(array());
 
         // Skipped.
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementStruct::parse('ABC', $document, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementStruct::parse('ABC', $document, $offset);
         $this->assert->boolean($element)->isEqualTo(false);
         $this->assert->integer($offset)->isEqualTo(0);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementStruct::parse(
+        $element = \Noxxie\PdfParser\Element\ElementStruct::parse(
             ' [ << /Filter /FlateDecode >> ]',
             $document,
             $offset
@@ -57,15 +57,15 @@ class ElementStruct extends atoum\test
         $this->assert->boolean($element)->isEqualTo(false);
         $this->assert->integer($offset)->isEqualTo(0);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementStruct::parse(' / << /Filter /FlateDecode >> ', $document, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementStruct::parse(' / << /Filter /FlateDecode >> ', $document, $offset);
         $this->assert->boolean($element)->isEqualTo(false);
         $this->assert->integer($offset)->isEqualTo(0);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementStruct::parse(' 0 << /Filter /FlateDecode >> ', $document, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementStruct::parse(' 0 << /Filter /FlateDecode >> ', $document, $offset);
         $this->assert->boolean($element)->isEqualTo(false);
         $this->assert->integer($offset)->isEqualTo(0);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementStruct::parse(
+        $element = \Noxxie\PdfParser\Element\ElementStruct::parse(
             " 0 \n << /Filter /FlateDecode >> ",
             $document,
             $offset
@@ -75,24 +75,24 @@ class ElementStruct extends atoum\test
 
         // Valid.
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementStruct::parse(' << /Filter /FlateDecode >> ', $document, $offset);
-        $this->assert->object($element)->isInstanceOf('\Smalot\PdfParser\Header');
+        $element = \Noxxie\PdfParser\Element\ElementStruct::parse(' << /Filter /FlateDecode >> ', $document, $offset);
+        $this->assert->object($element)->isInstanceOf('\Noxxie\PdfParser\Header');
         $this->assert->integer($offset)->isEqualTo(27);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementStruct::parse(' << /Filter /FlateDecode >>', $document, $offset);
-        $this->assert->object($element)->isInstanceOf('\Smalot\PdfParser\Header');
+        $element = \Noxxie\PdfParser\Element\ElementStruct::parse(' << /Filter /FlateDecode >>', $document, $offset);
+        $this->assert->object($element)->isInstanceOf('\Noxxie\PdfParser\Header');
         $this->assert->integer($offset)->isEqualTo(27);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementStruct::parse('<< /Filter /FlateDecode >>', $document, $offset);
-        $this->assert->object($element)->isInstanceOf('\Smalot\PdfParser\Header');
+        $element = \Noxxie\PdfParser\Element\ElementStruct::parse('<< /Filter /FlateDecode >>', $document, $offset);
+        $this->assert->object($element)->isInstanceOf('\Noxxie\PdfParser\Header');
         $this->assert->integer($offset)->isEqualTo(26);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementStruct::parse(
+        $element = \Noxxie\PdfParser\Element\ElementStruct::parse(
             " \n << /Filter /FlateDecode >> ",
             $document,
             $offset
         );
-        $this->assert->object($element)->isInstanceOf('\Smalot\PdfParser\Header');
+        $this->assert->object($element)->isInstanceOf('\Noxxie\PdfParser\Header');
         $this->assert->integer($offset)->isEqualTo(29);
     }
 }

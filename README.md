@@ -1,7 +1,7 @@
 # PdfParser #
 
 Pdf Parser, a standalone PHP library, provides various tools to extract data from a PDF file.
-This package originates from **smalot\pdfparser**. The only functionality added here is the ability to extract coordinates of text.
+This package originates from **Noxxie\pdfparser**. The only functionality added here is the ability to extract coordinates of text.
 
 Website : [http://www.pdfparser.org](http://www.pdfparser.org/?utm_source=GitHub&utm_medium=website&utm_campaign=GitHub)
 
@@ -37,5 +37,5 @@ Original PDF References files can be downloaded from this url : http://www.adobe
 
 ## License ##
 
-This library is under the [LGPLv3 license](https://github.com/smalot/pdfparser/blob/master/LICENSE.txt).
+This library is under the [LGPLv3 license](https://github.com/Noxxie/pdfparser/blob/master/LICENSE.txt).
 

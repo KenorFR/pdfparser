@@ -7,7 +7,7 @@
  * @author  Sébastien MALOT <sebastien@malot.fr>
  * @date    2017-01-03
  * @license LGPLv3
- * @url     <https://github.com/smalot/pdfparser>
+ * @url     <https://github.com/Noxxie/pdfparser>
  *
  *  PdfParser is a pdf library written in PHP, extraction oriented.
  *  Copyright (C) 2017 - Sébastien MALOT <sebastien@malot.fr>
@@ -28,14 +28,14 @@
  *
  */
 
-namespace Smalot\PdfParser;
+namespace Noxxie\PdfParser;
 
-use Smalot\PdfParser\Element\ElementNumeric;
+use Noxxie\PdfParser\Element\ElementNumeric;
 
 /**
  * Class Encoding
  *
- * @package Smalot\PdfParser
+ * @package Noxxie\PdfParser
  */
 class Encoding extends PDFObject
 {
@@ -66,7 +66,7 @@ class Encoding extends PDFObject
         if ($this->has('BaseEncoding')) {
             // Load reference table charset.
             $baseEncoding = preg_replace('/[^A-Z0-9]/is', '', $this->get('BaseEncoding')->getContent());
-            $className    = '\\Smalot\\PdfParser\\Encoding\\' . $baseEncoding;
+            $className    = '\\Noxxie\\PdfParser\\Encoding\\' . $baseEncoding;
 
             if (class_exists($className)) {
                 $class = new $className();

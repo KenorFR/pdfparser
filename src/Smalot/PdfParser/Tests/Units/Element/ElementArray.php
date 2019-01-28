@@ -7,7 +7,7 @@
  * @author  Sébastien MALOT <sebastien@malot.fr>
  * @date    2017-01-03
  * @license LGPLv3
- * @url     <https://github.com/smalot/pdfparser>
+ * @url     <https://github.com/Noxxie/pdfparser>
  *
  *  PdfParser is a pdf library written in PHP, extraction oriented.
  *  Copyright (C) 2017 - Sébastien MALOT <sebastien@malot.fr>
@@ -28,63 +28,63 @@
  *
  */
 
-namespace Smalot\PdfParser\Tests\Units\Element;
+namespace Noxxie\PdfParser\Tests\Units\Element;
 
 use mageekguy\atoum;
-use Smalot\PdfParser\Document;
-use Smalot\PdfParser\Header;
-use Smalot\PdfParser\Page;
+use Noxxie\PdfParser\Document;
+use Noxxie\PdfParser\Header;
+use Noxxie\PdfParser\Page;
 
 /**
  * Class ElementArray
  *
- * @package Smalot\PdfParser\Tests\Units\Element
+ * @package Noxxie\PdfParser\Tests\Units\Element
  */
 class ElementArray extends atoum\test
 {
     public function testParse()
     {
-        $document = new \Smalot\PdfParser\Document(array());
+        $document = new \Noxxie\PdfParser\Document(array());
 
         // Skipped.
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementArray::parse('ABC', $document, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementArray::parse('ABC', $document, $offset);
         $this->assert->boolean($element)->isEqualTo(false);
         $this->assert->integer($offset)->isEqualTo(0);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementArray::parse(' / [ 4 2 ] ', $document, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementArray::parse(' / [ 4 2 ] ', $document, $offset);
         $this->assert->boolean($element)->isEqualTo(false);
         $this->assert->integer($offset)->isEqualTo(0);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementArray::parse(' 0 [ 4 2 ] ', $document, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementArray::parse(' 0 [ 4 2 ] ', $document, $offset);
         $this->assert->boolean($element)->isEqualTo(false);
         $this->assert->integer($offset)->isEqualTo(0);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementArray::parse(" 0 \n [ 4 2 ] ", $document, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementArray::parse(" 0 \n [ 4 2 ] ", $document, $offset);
         $this->assert->boolean($element)->isEqualTo(false);
         $this->assert->integer($offset)->isEqualTo(0);
 
         // Valid.
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementArray::parse(' [ 4 2 ] ', $document, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementArray::parse(' [ 4 2 ] ', $document, $offset);
         $this->assert->boolean($element->contains(4))->isEqualTo(true);
         $this->assert->boolean($element->contains(2))->isEqualTo(true);
         $this->assert->boolean($element->contains(8))->isEqualTo(false);
         $this->assert->integer($offset)->isEqualTo(8);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementArray::parse(' [ 4 2 ]', $document, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementArray::parse(' [ 4 2 ]', $document, $offset);
         $this->assert->boolean($element->contains(4))->isEqualTo(true);
         $this->assert->boolean($element->contains(2))->isEqualTo(true);
         $this->assert->boolean($element->contains(8))->isEqualTo(false);
         $this->assert->integer($offset)->isEqualTo(8);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementArray::parse('[ 4 2 ]', $document, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementArray::parse('[ 4 2 ]', $document, $offset);
         $this->assert->boolean($element->contains(4))->isEqualTo(true);
         $this->assert->boolean($element->contains(2))->isEqualTo(true);
         $this->assert->boolean($element->contains(8))->isEqualTo(false);
         $this->assert->integer($offset)->isEqualTo(7);
         $offset  = 0;
-        $element = \Smalot\PdfParser\Element\ElementArray::parse(" \n [ 4 2 ] ", $document, $offset);
+        $element = \Noxxie\PdfParser\Element\ElementArray::parse(" \n [ 4 2 ] ", $document, $offset);
         $this->assert->boolean($element->contains(4))->isEqualTo(true);
         $this->assert->boolean($element->contains(2))->isEqualTo(true);
         $this->assert->boolean($element->contains(8))->isEqualTo(false);
@@ -93,9 +93,9 @@ class ElementArray extends atoum\test
 
     public function testGetContent()
     {
-        $val_4   = new \Smalot\PdfParser\Element\ElementNumeric('4');
-        $val_2   = new \Smalot\PdfParser\Element\ElementNumeric('2');
-        $element = new \Smalot\PdfParser\Element\ElementArray(array($val_4, $val_2));
+        $val_4   = new \Noxxie\PdfParser\Element\ElementNumeric('4');
+        $val_2   = new \Noxxie\PdfParser\Element\ElementNumeric('2');
+        $element = new \Noxxie\PdfParser\Element\ElementArray(array($val_4, $val_2));
 
         $content = $element->getContent();
         $this->assert->array($content)->hasSize(2);
@@ -103,9 +103,9 @@ class ElementArray extends atoum\test
 
     public function testContains()
     {
-        $val_4   = new \Smalot\PdfParser\Element\ElementNumeric('4');
-        $val_2   = new \Smalot\PdfParser\Element\ElementNumeric('2');
-        $element = new \Smalot\PdfParser\Element\ElementArray(array($val_4, $val_2));
+        $val_4   = new \Noxxie\PdfParser\Element\ElementNumeric('4');
+        $val_2   = new \Noxxie\PdfParser\Element\ElementNumeric('2');
+        $element = new \Noxxie\PdfParser\Element\ElementArray(array($val_4, $val_2));
 
         $this->assert->boolean($element->contains(2))->isEqualTo(true);
         $this->assert->boolean($element->contains(8))->isEqualTo(false);
@@ -115,26 +115,26 @@ class ElementArray extends atoum\test
     {
         // Document with text.
         $filename = __DIR__ . '/../../../../../../samples/Document1_pdfcreator_nocompressed.pdf';
-        $parser   = new \Smalot\PdfParser\Parser();
+        $parser   = new \Noxxie\PdfParser\Parser();
         $document = $parser->parseFile($filename);
         $object   = $document->getObjectById('3_0');
         $kids     = $object->get('Kids');
 
-        $this->assert->object($kids)->isInstanceOf('\Smalot\PdfParser\Element\ElementArray');
+        $this->assert->object($kids)->isInstanceOf('\Noxxie\PdfParser\Element\ElementArray');
         $this->assert->array($kids->getContent())->hasSize(1);
 
         $pages = $kids->getContent();
-        $this->assert->object(reset($pages))->isInstanceOf('\Smalot\PdfParser\Page');
+        $this->assert->object(reset($pages))->isInstanceOf('\Noxxie\PdfParser\Page');
     }
 
     public function testGetDetails()
     {
 //        // Document with text.
 //        $filename = __DIR__ . '/../../../../../../samples/Document1_pdfcreator_nocompressed.pdf';
-//        $parser   = new \Smalot\PdfParser\Parser();
+//        $parser   = new \Noxxie\PdfParser\Parser();
 //        $document = $parser->parseFile($filename);
 //        $object   = $document->getObjectById('3_0');
-//        /** @var \Smalot\PdfParser\Element\ElementArray $kids */
+//        /** @var \Noxxie\PdfParser\Element\ElementArray $kids */
 //        $kids    = $object->get('Kids');
 //        $details = $kids->getDetails();
 //
@@ -177,13 +177,13 @@ class ElementArray extends atoum\test
 
     public function test__toString()
     {
-        $val_4   = new \Smalot\PdfParser\Element\ElementNumeric('4');
-        $val_2   = new \Smalot\PdfParser\Element\ElementNumeric('2');
-        $element = new \Smalot\PdfParser\Element\ElementArray(array($val_4, $val_2));
+        $val_4   = new \Noxxie\PdfParser\Element\ElementNumeric('4');
+        $val_2   = new \Noxxie\PdfParser\Element\ElementNumeric('2');
+        $element = new \Noxxie\PdfParser\Element\ElementArray(array($val_4, $val_2));
         $this->assert->castToString($element)->isEqualTo('4,2');
 
-        $document = new \Smalot\PdfParser\Document(array());
-        $element  = \Smalot\PdfParser\Element\ElementArray::parse(' [ 4 2 ]', $document);
+        $document = new \Noxxie\PdfParser\Document(array());
+        $element  = \Noxxie\PdfParser\Element\ElementArray::parse(' [ 4 2 ]', $document);
         $this->assert->castToString($element)->isEqualTo('4,2');
     }
 }

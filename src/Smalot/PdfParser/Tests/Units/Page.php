@@ -7,7 +7,7 @@
  * @author  Sébastien MALOT <sebastien@malot.fr>
  * @date    2017-01-03
  * @license LGPLv3
- * @url     <https://github.com/smalot/pdfparser>
+ * @url     <https://github.com/Noxxie/pdfparser>
  *
  *  PdfParser is a pdf library written in PHP, extraction oriented.
  *  Copyright (C) 2017 - Sébastien MALOT <sebastien@malot.fr>
@@ -28,14 +28,14 @@
  *
  */
 
-namespace Smalot\PdfParser\Tests\Units;
+namespace Noxxie\PdfParser\Tests\Units;
 
 use mageekguy\atoum;
 
 /**
  * Class Page
  *
- * @package Smalot\PdfParser\Tests\Units
+ * @package Noxxie\PdfParser\Tests\Units
  */
 class Page extends atoum\test
 {
@@ -43,7 +43,7 @@ class Page extends atoum\test
     {
         // Document with text.
         $filename = __DIR__ . '/../../../../../samples/Document1_pdfcreator_nocompressed.pdf';
-        $parser   = new \Smalot\PdfParser\Parser();
+        $parser   = new \Noxxie\PdfParser\Parser();
         $document = $parser->parseFile($filename);
         $pages    = $document->getPages();
         $page     = $pages[0];
@@ -52,7 +52,7 @@ class Page extends atoum\test
         $fonts = $page->getFonts();
         $this->assert->array($fonts)->isNotEmpty();
         foreach ($fonts as $font) {
-            $this->assert->object($font)->isInstanceOf('\Smalot\PdfParser\Font');
+            $this->assert->object($font)->isInstanceOf('\Noxxie\PdfParser\Font');
         }
         // the second to use cache.
         $fonts = $page->getFonts();
@@ -77,23 +77,23 @@ class Page extends atoum\test
     {
         // Document with text.
         $filename = __DIR__ . '/../../../../../samples/Document1_pdfcreator_nocompressed.pdf';
-        $parser   = new \Smalot\PdfParser\Parser();
+        $parser   = new \Noxxie\PdfParser\Parser();
         $document = $parser->parseFile($filename);
         $pages    = $document->getPages();
         $page     = $pages[0];
 
         // the first to load data.
         $font = $page->getFont('R7');
-        $this->assert->object($font)->isInstanceOf('\Smalot\PdfParser\Font');
+        $this->assert->object($font)->isInstanceOf('\Noxxie\PdfParser\Font');
         $font = $page->getFont('ABC7');
-        $this->assert->object($font)->isInstanceOf('\Smalot\PdfParser\Font');
+        $this->assert->object($font)->isInstanceOf('\Noxxie\PdfParser\Font');
     }
 
     public function testGetText()
     {
         // Document with text.
         $filename = __DIR__ . '/../../../../../samples/Document1_pdfcreator_nocompressed.pdf';
-        $parser   = new \Smalot\PdfParser\Parser();
+        $parser   = new \Noxxie\PdfParser\Parser();
         $document = $parser->parseFile($filename);
         $pages    = $document->getPages();
         $page     = $pages[0];
