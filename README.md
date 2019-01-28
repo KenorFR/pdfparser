@@ -1,14 +1,7 @@
 # PdfParser #
 
 Pdf Parser, a standalone PHP library, provides various tools to extract data from a PDF file.
-
-[![Build Status](https://travis-ci.org/smalot/pdfparser.png?branch=master)](https://travis-ci.org/smalot/pdfparser)
-[![Current Version](https://poser.pugx.org/smalot/pdfparser/v/stable.png)](https://packagist.org/packages/smalot/pdfparser)
-[![composer.lock](https://poser.pugx.org/smalot/pdfparser/composerlock)](https://packagist.org/packages/smalot/pdfparser)
-
-[![Total Downloads](https://poser.pugx.org/smalot/pdfparser/downloads.png)](https://packagist.org/packages/smalot/pdfparser)
-[![Monthly Downloads](https://poser.pugx.org/smalot/pdfparser/d/monthly)](https://packagist.org/packages/smalot/pdfparser)
-[![Daily Downloads](https://poser.pugx.org/smalot/pdfparser/d/daily)](https://packagist.org/packages/smalot/pdfparser)
+This package originates from **smalot\pdfparser**. The only functionality added here is the ability to extract coordinates of text.
 
 Website : [http://www.pdfparser.org](http://www.pdfparser.org/?utm_source=GitHub&utm_medium=website&utm_campaign=GitHub)
 
@@ -28,6 +21,7 @@ Features included :
 - Handling of hexa and octal encoding in text sections
 - PSR-0 compliant ([autoloader](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-0.md))
 - PSR-1 compliant ([code styling](https://github.com/php-fig/fig-standards/blob/master/accepted/PSR-1-basic-coding-standard.md))
+- Extraction of coordinates of specific text on a page
 
 Currently, secured documents are not supported.
 
